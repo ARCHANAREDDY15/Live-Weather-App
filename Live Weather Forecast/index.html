@@ -237,11 +237,8 @@
                 }
                 const data = await response.json();
 
-                let todayDate = new Date().toISOString().split("T")[0]; // Get today's date (YYYY-MM-DD)
-                let todayForecasts = data.list.filter(item => item.dt_txt.startsWith(todayDate)); // Get today's data
-
-                // Select specific time intervals (e.g., every 3 hours from the API)
-                let selectedHours = todayForecasts.slice(0, 6); // Get first 6 hourly forecasts
+                // Select the next 6 hourly forecasts (every 3 hours from the API)
+                let selectedHours = data.list.slice(0, 6); // Get the first 6 forecasts from the API response
 
                 let todayHtml = "";
                 selectedHours.forEach(item => {
